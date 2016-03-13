@@ -15,32 +15,29 @@ class GigasecondTest < Minitest::Test
   end
 
   def test_1977_06_13
-    skip
     gs = Gigasecond.from(Time.utc(1977, 6, 13, 0, 0, 0))
     assert_equal Time.utc(2009, 2, 19, 1, 46, 40), gs
   end
 
   def test_1959_07_19
-    skip
     gs = Gigasecond.from(Time.utc(1959, 7, 19, 0, 0, 0))
     assert_equal Time.utc(1991, 3, 27, 1, 46, 40), gs
   end
 
   def test_full_time_specified
-    skip
     gs = Gigasecond.from(Time.utc(2015, 1, 24, 22, 0, 0))
     assert_equal Time.utc(2046, 10, 2, 23, 46, 40), gs
   end
 
   def test_full_time_with_day_roll_over
-    skip
     gs = Gigasecond.from(Time.utc(2015, 1, 24, 23, 59, 59))
     assert_equal Time.utc(2046, 10, 3, 1, 46, 39), gs
   end
 
   # Test your 1Gs anniversary
   def test_with_your_birthday
-    skip
+    gs = Gigasecond.from(Time.utc(1990, 2, 7, 16, 30, 00))
+    assert_equal Time.utc(2021, 10, 16, 18, 16, 40), gs
   end
 
   # Problems in exercism evolve over time,
@@ -52,7 +49,6 @@ class GigasecondTest < Minitest::Test
   # If you're curious, read more about constants on RubyDoc:
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
   def test_bookkeeping
-    skip
     assert_equal 1, Gigasecond::VERSION
   end
 end
