@@ -8,19 +8,12 @@ class Sieve
 
   def primes
     return [] if limit < 2
-    result = []
 
     range.each do |num|
-      result << num if is_prime?(num)
+      range.delete_if do |i|
+        i % num == 0 && i != num
+      end
     end
-    result
-  end
-
-  private
-
-  def is_prime?(num)
-    return false if num <= 1
-    Math.sqrt(num).to_i.downto(2).each { |n| return false if num % n == 0 }
   end
 end
 
