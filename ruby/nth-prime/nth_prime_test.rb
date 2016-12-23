@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'nth_prime'
 
 # Test data version:
@@ -16,7 +17,6 @@ class NthPrimeTest < Minitest::Test
   end
 
   def test_sixth_prime
-    skip
     assert_equal 13, Prime.nth(6)
   end
 
@@ -26,7 +26,6 @@ class NthPrimeTest < Minitest::Test
   end
 
   def test_there_is_no_zeroth_prime
-    skip
     assert_raises(ArgumentError) { Prime.nth(0) }
   end
 

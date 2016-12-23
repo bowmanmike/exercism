@@ -1,7 +1,12 @@
 class Prime
+  @@primes = [1]
+
   def self.nth(num)
-    2
+    raise ArgumentError if num < 1
+
+    @@primes[num - 1]
   end
+
 end
 
 module BookKeeping
