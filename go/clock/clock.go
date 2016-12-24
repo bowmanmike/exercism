@@ -1,31 +1,36 @@
 package clock
 
-import (
-    "fmt"
-    "time"
-)
+import "fmt"
 
 const testVersion = 4
 
 type Clock struct {
-    hour   int
-    minute int
+	Hour   int
+	Minute int
 }
 
-func New(hour, minute int) Clock {
-    var c Clock
-    c.hour = hour
-    c.minute = minute
-    fmt.Println(time.Now())
-    // fmt.Printf("0%v:0%v", c.hour, c.minute)
-    return c
+func New(h, m int) *Clock {
+	c := new(Clock)
+	c.Hour = h
+	c.Minute = m
+
+	return c
 }
 
-func (Clock) String() string {
-    return "Clock"
+func (c Clock) String() string {
+	for c.Minute >= 60 {
+		addMinutes := c.Minute / 60
+		c.Hour += addMinutes
+		c.Minute = c.Minute - 60
+	}
+
+	for c.Hour >= 24 {
+		c.Hour = c.Hour - 24
+	}
+
+	return fmt.Sprintf("%02d:%02d", c.Hour, c.Minute)
 }
 
-func (c Clock) Add(minutes int) Clock {
-    c.minute += minutes
-    return c
+func (c Clock) Add(min int) Clock {
+	return c
 }
