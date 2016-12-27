@@ -18,10 +18,17 @@ func New(h, m int) *Clock {
 }
 
 func (c Clock) String() string {
+	for c.Minute < 0 {
+		c.Minute = (60 + c.Minute)
+	}
+
+	for c.Hour < 0 {
+		c.Hour = (24 + c.Hour)
+	}
+
 	for c.Minute >= 60 {
-		addMinutes := c.Minute / 60
-		c.Hour += addMinutes
-		c.Minute = c.Minute - 60
+		c.Minute -= 60
+		c.Hour += 1
 	}
 
 	for c.Hour >= 24 {
