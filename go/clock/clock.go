@@ -40,5 +40,7 @@ func (c Clock) String() string {
 }
 
 func (c Clock) Add(min int) Clock {
+	c.Minute += min
+
 	return c
 }
