@@ -20,6 +20,7 @@ func New(h, m int) *Clock {
 func (c Clock) String() string {
 	for c.Minute < 0 {
 		c.Minute = (60 + c.Minute)
+		c.Hour--
 	}
 
 	for c.Hour < 0 {
