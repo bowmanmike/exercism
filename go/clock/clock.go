@@ -14,24 +14,25 @@ func New(h, m int) Clock {
 	c.Hour = h
 	c.Minute = m
 
-	for c.Minute < 0 {
-		c.Minute = (60 + c.Minute)
-		c.Hour--
-	}
+	// for c.Minute < 0 {
+	// 	c.Minute = (60 + c.Minute)
+	// 	c.Hour--
+	// }
 
-	for c.Hour < 0 {
-		c.Hour = (24 + c.Hour)
-	}
+	// for c.Hour < 0 {
+	// 	c.Hour = (24 + c.Hour)
+	// }
 
-	for c.Minute >= 60 {
-		c.Minute -= 60
-		c.Hour += 1
-	}
+	// for c.Minute >= 60 {
+	// 	c.Minute -= 60
+	// 	c.Hour += 1
+	// }
 
-	for c.Hour >= 24 {
-		c.Hour = c.Hour - 24
-	}
+	// for c.Hour >= 24 {
+	// 	c.Hour = c.Hour - 24
+	// }
 
+	c.adjustTime()
 	return *c
 }
 
@@ -42,6 +43,29 @@ func (c Clock) String() string {
 func (c Clock) Add(min int) Clock {
 	c.Minute += min
 
+	// for c.Minute < 0 {
+	// 	c.Minute = (60 + c.Minute)
+	// 	c.Hour--
+	// }
+
+	// for c.Hour < 0 {
+	// 	c.Hour = (24 + c.Hour)
+	// }
+
+	// for c.Minute >= 60 {
+	// 	c.Minute -= 60
+	// 	c.Hour += 1
+	// }
+
+	// for c.Hour >= 24 {
+	// 	c.Hour = c.Hour - 24
+	// }
+
+	c.adjustTime()
+	return c
+}
+
+func (c Clock) adjustTime() Clock {
 	for c.Minute < 0 {
 		c.Minute = (60 + c.Minute)
 		c.Hour--
@@ -62,25 +86,3 @@ func (c Clock) Add(min int) Clock {
 
 	return c
 }
-
-// func (c Clock) adjustTime() Clock {
-// 	for c.Minute < 0 {
-// 		c.Minute = (60 + c.Minute)
-// 		c.Hour--
-// 	}
-
-// 	for c.Hour < 0 {
-// 		c.Hour = (24 + c.Hour)
-// 	}
-
-// 	for c.Minute >= 60 {
-// 		c.Minute -= 60
-// 		c.Hour += 1
-// 	}
-
-// 	for c.Hour >= 24 {
-// 		c.Hour = c.Hour - 24
-// 	}
-
-// 	return c
-// }
