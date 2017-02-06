@@ -13,7 +13,6 @@ defmodule NucleotideCountTest do
     assert NucleotideCount.count('', ?A) == 0
   end
 
-  @tag :pending
   test "repetitive cytosine gets counted" do
     assert NucleotideCount.count('CCCCC', ?C) == 5
   end
