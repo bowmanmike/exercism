@@ -14,9 +14,7 @@ defmodule NucleotideCount do
   """
   @spec count([char], char) :: non_neg_integer
   def count(strand, nucleotide) do
-    split = String.split(strand, "")
-    IO.puts(split)
-    0
+    Regex.scan(~r/#{nucleotide}/, strand) |> Enum.count
   end
 
 
@@ -30,6 +28,6 @@ defmodule NucleotideCount do
   """
   @spec histogram([char]) :: map
   def histogram(strand) do
-
+    strand
   end
 end
