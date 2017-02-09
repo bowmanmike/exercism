@@ -1,5 +1,6 @@
 defmodule NucleotideCount do
   @nucleotides [?A, ?C, ?G, ?T]
+  @init_map Enum.into(Enum.map(@nucleotides, fn c -> {c, 0} end), %{})
 
   @doc """
   Counts individual nucleotides in a NucleotideCount strand.
@@ -13,10 +14,18 @@ defmodule NucleotideCount do
   1
   """
   @spec count([char], char) :: non_neg_integer
-  def count(strand, nucleotide) do
-    strand |> Enum.count(fn(c) -> c == nucleotide end)
-  end
+  def count(strand, nucleotide), do: _count(strand, nucleotide, 0)
+  def _count([], _, acc), do: acc
+  # def count([ head | tail], char) do
+  #
+  # end
+  # def count(strand, nucleotide) do
+  #   strand |> Enum.count(fn(c) -> c == nucleotide end)
+  # end
 
+  def init() do
+    IO.puts @init_map
+  end
 
   @doc """
   Returns a summary of counts by nucleotide.
