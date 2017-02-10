@@ -15,17 +15,9 @@ defmodule NucleotideCount do
   """
   @spec count([char], char) :: non_neg_integer
   def count(strand, nucleotide), do: _count(strand, nucleotide, 0)
-  def _count([], _, acc), do: acc
-  # def count([ head | tail], char) do
-  #
-  # end
-  # def count(strand, nucleotide) do
-  #   strand |> Enum.count(fn(c) -> c == nucleotide end)
-  # end
-
-  def init() do
-    IO.puts @init_map
-  end
+  defp _count([], _func, acc), do: acc
+  defp _count([ n | tail ], n, acc), do: _count(tail, n, acc + 1)
+  defp _count([ _ | tail ], n, acc), do: _count(tail, n, acc)
 
   @doc """
   Returns a summary of counts by nucleotide.
@@ -36,11 +28,14 @@ defmodule NucleotideCount do
   %{?A => 4, ?T => 1, ?C => 0, ?G => 0}
   """
   @spec histogram([char]) :: map
-  def histogram(strand) do
-    strand
-    |> Enum.reduce(%{65 => 0, 67 => 0, 71 => 0,  84 => 0},
-    fn(acc, letter) ->
-      Map.update(acc, letter, 1, &(&1 + 1))
-    end)
-  end
+  def histogram(strand), do: _hist(strand, @init_map)
+  defp _hist([], map), do: map
+  defp _hist([ head | tail ], map), do: _hist(tail, Map.put(map, head, map[head] + 1))
+  # def histogram(strand) do
+  #   strand
+  #   |> Enum.reduce(%{65 => 0, 67 => 0, 71 => 0,  84 => 0},
+  #   fn(acc, letter) ->
+  #     Map.update(acc, letter, 1, &(&1 + 1))
+  #   end)
+  # end
 end
