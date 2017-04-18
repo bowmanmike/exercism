@@ -15,6 +15,16 @@ defmodule SecretHandshake do
   """
   @spec commands(code :: integer) :: list(String.t())
   def commands(code) do
+    nums = String.to_integer(Integer.to_charlist(code, 2))
+    IO.puts nums
+    _commands(nums)
   end
-end
 
+  defp _commands(1), do: ["wink"]
+  # defp _commands([ _ | tail]), do: commands(tail)
+  # defp _commands(code) do
+  #   if code == 1 do
+  #     ["wink"]
+  #   end
+  # end
+end
