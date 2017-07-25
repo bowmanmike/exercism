@@ -19,17 +19,17 @@ defmodule SecretHandshakeTest do
       assert SecretHandshake.commands(2) == ["double blink"]
     end
 
-    @tag :pending
+    # @tag :pending
     test "close your eyes for 100" do
       assert SecretHandshake.commands(4) == ["close your eyes"]
     end
 
-    @tag :pending
+    # @tag :pending
     test "jump for 1000" do
       assert SecretHandshake.commands(8) == ["jump"]
     end
 
-    @tag :pending
+    # @tag :pending
     test "combine two actions" do
       assert SecretHandshake.commands(3) == ["wink", "double blink"]
     end

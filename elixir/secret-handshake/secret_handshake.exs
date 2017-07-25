@@ -1,4 +1,11 @@
 defmodule SecretHandshake do
+  @cmd_map %{
+    1 => "wink",
+    10 => "double blink",
+    100 => "close your eyes",
+    1000 => "jump",
+    10000 => "reverse order"
+  }
   @doc """
   Determine the actions of a secret handshake based on the binary
   representation of the given `code`.
@@ -14,17 +21,10 @@ defmodule SecretHandshake do
   10000 = Reverse the order of the operations in the secret handshake
   """
   @spec commands(code :: integer) :: list(String.t())
-  def commands(code) do
-    nums = String.to_integer(Integer.to_charlist(code, 2))
-    IO.puts nums
-    _commands(nums)
-  end
+  def commands(code), do: _commands(Integer.to_charlist code, 2)
 
-  defp _commands(1), do: ["wink"]
-  # defp _commands([ _ | tail]), do: commands(tail)
-  # defp _commands(code) do
-  #   if code == 1 do
-  #     ["wink"]
-  #   end
-  # end
+  defp _commands('1'),    do: ["wink"]
+  defp _commands('10'),   do: ["double blink"]
+  defp _commands('100'),  do: ["close your eyes"]
+  defp _commands('1000'), do: ["jump"]
 end
