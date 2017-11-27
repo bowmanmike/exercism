@@ -22,9 +22,10 @@ defmodule SecretHandshake do
   """
   @spec commands(code :: integer) :: list(String.t())
   def commands(code) do
-    n = Integer.to_charlist code, 2
-    IO.puts "CALLING WITH: #{n}"
-    _commands([n])
+    # n = Integer.to_charlist code, 2
+    # Use Integer.digits!
+    # IO.puts "CALLING WITH: #{n}"
+    Integer.digits(code) |> Enum.map(&(Integer.to_charlist(&1, 2))) |> _commands
   end
 
   defp _commands([]), do: []
