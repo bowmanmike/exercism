@@ -18,3 +18,15 @@ func TestShareWith(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkShareWithName(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ShareWith("mike")
+	}
+}
+
+func BenchmarkShareWithNoName(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ShareWith("")
+	}
+}
