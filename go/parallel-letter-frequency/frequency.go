@@ -16,8 +16,8 @@ func Frequency(s string) FreqMap {
 
 func ConcurrentFrequency(s []string) FreqMap {
 	var wg sync.WaitGroup
-	m := FreqMap{}
 	ch := make(chan FreqMap, len(s))
+
 	for _, str := range s {
 		wg.Add(1)
 		go func(str string, c chan FreqMap) {
@@ -32,9 +32,11 @@ func ConcurrentFrequency(s []string) FreqMap {
 	wg.Wait()
 	close(ch)
 
-	res := <-ch
-	for k, v := range res {
-		m[k] += v
+	m := FreqMap{}
+	for result := range ch {
+		for char, freq := range result {
+			m[char] += freq
+		}
 	}
 
 	return m
