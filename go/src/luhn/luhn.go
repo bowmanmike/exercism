@@ -28,7 +28,7 @@ func Valid(number string) bool {
 		if err != nil {
 			// Skip entry if the character cannot be converted
 			// to an int
-			continue
+			return false
 		}
 		// This section is confusing
 		// Starting with the last element, perform checks on every
