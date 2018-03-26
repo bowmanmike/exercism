@@ -1,18 +1,15 @@
-#!/usr/bin/env ruby
-gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
-require 'minitest/pride'
 require_relative 'nth_prime'
 
-# Test data version:
-# bb79e10
-#
+# Common test data version: 1.0.0 016d65b
 class NthPrimeTest < Minitest::Test
   def test_first_prime
+    # skip
     assert_equal 2, Prime.nth(1)
   end
 
   def test_second_prime
+    skip
     assert_equal 3, Prime.nth(2)
   end
 
@@ -27,6 +24,7 @@ class NthPrimeTest < Minitest::Test
   end
 
   def test_there_is_no_zeroth_prime
+    skip
     assert_raises(ArgumentError) { Prime.nth(0) }
   end
 
@@ -48,6 +46,7 @@ class NthPrimeTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
+    skip
     assert_equal 1, BookKeeping::VERSION
   end
 end
