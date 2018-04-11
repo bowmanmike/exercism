@@ -4,7 +4,6 @@ require_relative 'nth_prime'
 # Common test data version: 1.0.0 016d65b
 class NthPrimeTest < Minitest::Test
   def test_first_prime
-    # skip
     assert_equal 2, Prime.nth(1)
   end
 
@@ -46,7 +45,6 @@ class NthPrimeTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
-    skip
     assert_equal 1, BookKeeping::VERSION
   end
 end
