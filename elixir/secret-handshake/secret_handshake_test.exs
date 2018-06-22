@@ -2,14 +2,14 @@ if !System.get_env("EXERCISM_TEST_EXAMPLES") do
   Code.load_file("secret_handshake.exs", __DIR__)
 end
 
-ExUnit.start
-ExUnit.configure trace: true, exclude: :pending
+ExUnit.start()
+ExUnit.configure(trace: true, exclude: :pending)
 
 defmodule SecretHandshakeTest do
   use ExUnit.Case
 
   describe "Create a handshake for a number" do
-    #@tag :pending
+    # @tag :pending
     test "wink for 1" do
       assert SecretHandshake.commands(1) == ["wink"]
     end
@@ -29,7 +29,7 @@ defmodule SecretHandshakeTest do
       assert SecretHandshake.commands(8) == ["jump"]
     end
 
-    # @tag :pending
+    @tag :pending
     test "combine two actions" do
       assert SecretHandshake.commands(3) == ["wink", "double blink"]
     end

@@ -22,16 +22,13 @@ defmodule SecretHandshake do
   """
   @spec commands(code :: integer) :: list(String.t())
   def commands(code) do
-    # n = Integer.to_charlist code, 2
-    # Use Integer.digits!
-    # IO.puts "CALLING WITH: #{n}"
-    Integer.digits(code) |> Enum.map(&(Integer.to_charlist(&1, 2))) |> _commands
+    code
+    |> Integer.to_charlist(2)
+    |> _commands()
   end
 
-  defp _commands([]), do: []
-  defp _commands([ '0' | tail ]),    do: [_commands(tail)]
-  defp _commands([ '1000' | tail ]), do: ["jump" | _commands(tail)]
-  defp _commands([ '100' | tail ]),  do: ["close your eyes" | _commands(tail)]
-  defp _commands([ '10' | tail ]),   do: ["double blink" | _commands(tail)]
-  defp _commands([ '1' | tail ]),    do: ["wink" | _commands(tail)]
+  defp _commands('1'), do: ["wink"]
+  defp _commands('10'), do: ["double blink"]
+  defp _commands('100'), do: ["close your eyes"]
+  defp _commands('1000'), do: ["jump"]
 end
