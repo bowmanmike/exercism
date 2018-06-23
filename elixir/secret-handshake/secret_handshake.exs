@@ -24,11 +24,17 @@ defmodule SecretHandshake do
   def commands(code) do
     code
     |> Integer.to_charlist(2)
-    |> _commands()
+    |> List.to_string()
+    |> _commands([])
   end
 
-  defp _commands('1'), do: ["wink"]
-  defp _commands('10'), do: ["double blink"]
-  defp _commands('100'), do: ["close your eyes"]
-  defp _commands('1000'), do: ["jump"]
+  # Given 11 -> handle 01, then 10 -> ["wink", "double blink"]
+  defp _commands("1", list), do: list ++ ["wink"]
+  defp _commands("10", list), do: list ++ ["double blink"]
+  defp _commands("100", list), do: list ++ ["close your eyes"]
+  defp _commands("1000", list), do: list ++ ["jump"]
+
+  defp _commands(num, list) do
+    list
+  end
 end
