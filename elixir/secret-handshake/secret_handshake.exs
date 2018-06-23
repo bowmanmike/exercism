@@ -1,11 +1,12 @@
 defmodule SecretHandshake do
-  # @cmd_map %{
-  #   1 => "wink",
-  #   10 => "double blink",
-  #   100 => "close your eyes",
-  #   1000 => "jump",
-  #   10000 => "reverse order"
-  # }
+  use Bitwise
+
+  @cmd_map %{
+    0 => "wink",
+    1 => "double blink",
+    2 => "close your eyes",
+    3 => "jump"
+  }
   @doc """
   Determine the actions of a secret handshake based on the binary
   representation of the given `code`.
@@ -22,19 +23,18 @@ defmodule SecretHandshake do
   """
   @spec commands(code :: integer) :: list(String.t())
   def commands(code) do
-    code
-    |> Integer.to_charlist(2)
-    |> List.to_string()
-    |> _commands([])
-  end
+    # Credit to http://exercism.io/tomplarge
+    actions =
+      @cmd_map
+      |> Enum.filter(fn {k, v} ->
+        (code >>> k &&& 1) !== 0
+      end)
+      |> Enum.map(fn {k, v} -> v end)
 
-  # Given 11 -> handle 01, then 10 -> ["wink", "double blink"]
-  defp _commands("1", list), do: list ++ ["wink"]
-  defp _commands("10", list), do: list ++ ["double blink"]
-  defp _commands("100", list), do: list ++ ["close your eyes"]
-  defp _commands("1000", list), do: list ++ ["jump"]
-
-  defp _commands(num, list) do
-    list
+    if (code >>> 4 &&& 1) != 0 do
+      Enum.reverse(actions)
+    else
+      actions
+    end
   end
 end
