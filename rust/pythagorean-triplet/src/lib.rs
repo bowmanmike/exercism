@@ -20,6 +20,5 @@ pub fn find() -> Option<u32> {
         }
     }
     let result: u32 = a * b * c;
-    // Some(result);
     None;
 }
