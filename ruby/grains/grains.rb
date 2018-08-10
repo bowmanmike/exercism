@@ -1,11 +1,14 @@
 class Grains
+  MIN_VALUE = 1
+  MAX_VALUE = 64
+
   def self.square(n)
-    raise ArgumentError if n < 1 || n > 64
+    raise ArgumentError if n < MIN_VALUE || n > MAX_VALUE
     2 ** (n - 1)
   end
 
   def self.total
-    (1..64).inject(0) { |memo, curr| memo += square(curr) }
+    (MIN_VALUE..MAX_VALUE).inject(0) { |memo, curr| memo += square(curr) }
   end
 end
 
