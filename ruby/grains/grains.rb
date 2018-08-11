@@ -8,7 +8,7 @@ class Grains
   end
 
   def self.total
-    (MIN_VALUE..MAX_VALUE).inject(0) { |memo, curr| memo += square(curr) }
+    (MIN_VALUE..MAX_VALUE).sum { |e| square(e) }
   end
 end
 
