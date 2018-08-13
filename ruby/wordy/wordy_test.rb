@@ -52,13 +52,13 @@ class WordyTest < Minitest::Test
   end
 
   def test_addition_and_subtraction
-    # skip
+    skip
     question = 'What is 1 plus 5 minus -2?'
     assert_equal(8, WordProblem.new(question).answer)
   end
 
   def test_multiple_subtraction
-    skip
+    # skip
     question = 'What is 20 minus 4 minus 13?'
     assert_equal(3, WordProblem.new(question).answer)
   end
@@ -70,7 +70,7 @@ class WordyTest < Minitest::Test
   end
 
   def test_multiple_multiplication
-    skip
+    # skip
     question = 'What is 2 multiplied by -2 multiplied by 3?'
     assert_equal(-12, WordProblem.new(question).answer)
   end
@@ -84,13 +84,13 @@ class WordyTest < Minitest::Test
   end
 
   def test_multiple_division
-    skip
+    # skip
     question = 'What is -12 divided by 2 divided by -3?'
     assert_equal(2, WordProblem.new(question).answer)
   end
 
   def test_unknown_operation
-    skip
+    # skip
     question = 'What is 52 cubed?'
     assert_raises ArgumentError do
       WordProblem.new(question).answer
@@ -98,7 +98,7 @@ class WordyTest < Minitest::Test
   end
 
   def test_non_math_question
-    skip
+    # skip
     question = 'Who is the President of the United States?'
     assert_raises ArgumentError do
       WordProblem.new(question).answer
@@ -123,7 +123,7 @@ class WordyTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
-    skip
+    # skip
     assert_equal 1, BookKeeping::VERSION
   end
 end
