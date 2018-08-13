@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class WordProblem
   OPERATION_MAP = {
     "plus": :+,
@@ -11,9 +12,16 @@ class WordProblem
   end
 
   def answer
-    operation = OPERATION_MAP.select { |k, _| /#{k}/ =~ @question }.values.first
-    raise ArgumentError unless operation
-    numbers = @question.split.select { |w| w =~ /[0-9]+\??/ }.map(&:to_i).reduce(&operation)
+    operations = OPERATION_MAP.select { |k, _| /#{k}/ =~ @question }.values
+
+    raise ArgumentError if operations.empty?
+
+    numbers = 0
+    until operations.empty?
+      numbers += @question.split.select { |w| w =~ /[0-9]+\??/ }.map(&:to_i).reduce(&operations.shift)
+    end
+
+    numbers
   end
 end
 

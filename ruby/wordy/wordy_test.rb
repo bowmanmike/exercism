@@ -52,7 +52,7 @@ class WordyTest < Minitest::Test
   end
 
   def test_addition_and_subtraction
-    skip
+    # skip
     question = 'What is 1 plus 5 minus -2?'
     assert_equal(8, WordProblem.new(question).answer)
   end
