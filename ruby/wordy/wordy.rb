@@ -9,19 +9,24 @@ class WordProblem
 
   def initialize(question)
     @question = question
+    @operations = generate_operations
   end
 
   def answer
-    operations = OPERATION_MAP.select { |k, _| /#{k}/ =~ @question }.values
-
-    raise ArgumentError if operations.empty?
-
-    numbers = 0
-    until operations.empty?
-      numbers += @question.split.select { |w| w =~ /[0-9]+\??/ }.map(&:to_i).reduce(&operations.shift)
+    number = 0
+    until @operations.empty?
+      number += @question.split.select { |w| w =~ /[0-9]+\??/ }.map(&:to_i).reduce(&@operations.shift)
     end
 
-    numbers
+    number
+  end
+
+  private
+
+  def generate_operations
+    ops = OPERATION_MAP.select { |k, _| /#{k}/ =~ @question }.values
+    raise ArgumentError if ops.empty?
+    ops
   end
 end
 
