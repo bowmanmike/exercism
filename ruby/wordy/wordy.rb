@@ -15,7 +15,8 @@ class WordProblem
   def answer
     number = 0
     until @operations.empty?
-      number += @question.split.select { |w| w =~ /[0-9]+\??/ }.map(&:to_i).reduce(&@operations.shift)
+      number += @question.split.select { |w| w =~ /-?[0-9]+\??/ }.map(&:to_i).reduce(&@operations.shift)
+      # this reduce operates on the entire array, not just the two numbers on either side of it
     end
 
     number
@@ -25,6 +26,7 @@ class WordProblem
 
   def generate_operations
     ops = OPERATION_MAP.select { |k, _| /#{k}/ =~ @question }.values
+    binding.pry if ops.length > 1
     raise ArgumentError if ops.empty?
     ops
   end
